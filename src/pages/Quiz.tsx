@@ -94,50 +94,48 @@ const Quiz = () => {
                 <h2 className="text-2xl font-bold text-blue-600">
                     {category?.toUpperCase()} QUIZ
                 </h2>
-                <div className="text-gray-600">
+                <div className="text-gray-300">
                     Question {currentQuestionIndex + 1}/{questions.length}
                 </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-md p-6">
-                <h3 className="text-xl font-semibold mb-6">
-                    {currentQuestion.question}
-                </h3>
-                <div className="grid grid-cols-1 gap-4">
-                    {currentQuestion.options.map((option, index) => (
-                        <button
-                            key={option}
-                            onClick={() => setSelectedAnswer(index)}
-                            className={`p-3 rounded-lg text-left transition-colors
-                                 ${selectedAnswer === index
-                                    ? "bg-blue-500 text-white"
-                                    : "bg-gray-200 text-gray-800"
-                                }`}
-                        >
-                            {option}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="mt-6 flex justify-between items-center">
-                    <div className="text-gray-600">
-                        Score: {score} / {questions.length}
-                    </div>
+            <h3 className="text-xl font-semibold mb-6">
+                {currentQuestion.question}
+            </h3>
+            <div className="grid grid-cols-1 gap-4">
+                {currentQuestion.options.map((option, index) => (
                     <button
-                        onClick={handleNextQuestion}
-                        disabled={selectedAnswer === null}
-                        className={`px-6 py-2 rounded-lg text-white transition-colors 
-                            ${selectedAnswer === null
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-blue-500 hover:bg-blue-600"
+                        key={option}
+                        onClick={() => setSelectedAnswer(index)}
+                        className={`p-3 rounded-lg text-left transition-all duration-500 ease-in-out hover:scale-105
+                                 ${selectedAnswer === index
+                                ? "bg-blue-500 text-white"
+                                : "bg-gray-200 text-gray-800"
                             }`}
                     >
-                        {currentQuestionIndex === questions.length - 1
-                            ? "Finish Quiz"
-                            : "Next Question"
-                        }
+                        {option}
                     </button>
+                ))}
+            </div>
+
+            <div className="mt-6 flex justify-between items-center">
+                <div className="text-gray-300">
+                    Score: {score} / {questions.length}
                 </div>
+                <button
+                    onClick={handleNextQuestion}
+                    disabled={selectedAnswer === null}
+                    className={`px-6 py-2 rounded-lg text-white transition-colors 
+                            ${selectedAnswer === null
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-blue-500 hover:bg-blue-600"
+                        }`}
+                >
+                    {currentQuestionIndex === questions.length - 1
+                        ? "Finish Quiz"
+                        : "Next Question"
+                    }
+                </button>
             </div>
         </div>
     );
