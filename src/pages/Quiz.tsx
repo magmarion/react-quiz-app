@@ -8,29 +8,44 @@ const Quiz = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        let apiUrl = "";
-        switch (category) {
-            case "react":
-                apiUrl = "https://opentdb.com/api.php?amount=15&category=18&type=multiple";
-                break;
-            case "math":
-                apiUrl = "https://opentdb.com/api.php?amount=15&category=19&type=multiple&difficulty=hard"
-                break;
-            case "astronomy":
-                apiUrl = "https://opentdb.com/api.php?amount=15&category=17&type=multiple"
-                break;
-            default:
-                apiUrl = "https://opentdb.com/api.php?amount=15&category=18&type=multiple";
+        const fetchData = async () => {
+            try {
+                let apiUrl = "";
+                switch (category) {
+                    case "react":
+                        apiUrl = "https://magmarion.github.io/quiz-json/react.json";
+                        break;
+                    case "math":
+                        apiUrl = "https://magmarion.github.io/quiz-json/math.json"
+                        break;
+                    case "astronomy":
+                        apiUrl = "https://magmarion.github.io/quiz-json/astronomy.json"
+                        break;
+                    default:
+                        apiUrl = "https://magmarion.github.io/quiz-json/react.json";
 
-        }
+                }
 
-        fetch(apiUrl)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("API data:", data);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
                 setQuestions(data.results);
+            } catch (error) {
+                console.error("Fetch error:", error);
+            } finally {
                 setLoading(false);
-            });
+            }
+
+        };
+
+        fetchData();
     }, [category]);
 
     return (
@@ -38,7 +53,7 @@ const Quiz = () => {
             <h2 className="text-2xl font-bold text-blue-400">
                 {category?.toUpperCase()}
             </h2>
-            {loading ? (<p>Loading...</p>) : (
+            {loading ? (<p>Loading...</p>) : questions?.length > 0 ? (
                 <div>
                     {questions.map((question, index) => (
                         <div key={index}>
@@ -52,9 +67,12 @@ const Quiz = () => {
                         </div>
                     ))}
                 </div>
+            ) : (
+                <p className="text-red-500">
+                    No questions available. Please try again later.
+                </p>
             )}
         </div>
     );
-};
-
+}
 export default Quiz;
