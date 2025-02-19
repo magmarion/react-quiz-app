@@ -9,6 +9,7 @@ const Quiz = () => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [score, setScore] = useState(0);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,9 +36,17 @@ const Quiz = () => {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                setQuestions(data.question || []);
+
+                if (!data.questions || !Array.isArray(data.questions)) {
+                    throw new Error("Invalid data format");
+                }
+
+                setQuestions(data.questions);
+                setError("");
+
             } catch (error) {
                 console.error("Fetch error:", error);
+                setError("Failed to load questions. Please try again later.");
                 setQuestions([]);
             } finally {
                 setLoading(false);
@@ -47,7 +56,7 @@ const Quiz = () => {
     }, [category]);
 
     const handleNextQuestion = () => {
-        if (selectedAnswer === questions[currentQuestionIndex].correctOption) {
+        if (selectedAnswer === questions[currentQuestionIndex]?.correctOption) {
             setScore(score + 1);
         }
         setSelectedAnswer(null);
@@ -58,17 +67,23 @@ const Quiz = () => {
         }
     };
 
-    if (loading) return (
-        <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-            <p>Loading questions...</p>
-        </div>
-    );
-    
-    if (!questions?.length) {
-        return <p className="text-red-500">
-            No questions available. Please try again later.
-        </p>
+    if (loading) {
+        return (
+            <div className="text-center p-4">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+                <p className="mt-2">Loading questions...</p>
+            </div>
+        );
+    }
+
+    if (error) {
+        return <p className="text-red-500 text-center p-4">{error}</p>;
+    }
+
+    if (!questions.length) {
+        return <p className="text-red-500 text-center p-4">
+            No questions available.
+        </p>;
     }
 
     const currentQuestion = questions[currentQuestionIndex];
@@ -77,10 +92,10 @@ const Quiz = () => {
         <div className="max-w-2xl mx-auto p-4">
             <div className="flex justify-between mb-4">
                 <h2 className="text-2xl font-bold text-blue-600">
-                    {category?.toUpperCase()}
+                    {category?.toUpperCase()} QUIZ
                 </h2>
                 <div className="text-gray-600">
-                    Question {currentQuestionIndex + 1} / {questions.length}
+                    Question {currentQuestionIndex + 1}/{questions.length}
                 </div>
             </div>
 
@@ -91,11 +106,12 @@ const Quiz = () => {
                 <div className="grid grid-cols-1 gap-4">
                     {currentQuestion.options.map((option, index) => (
                         <button
-                            key={index}
+                            key={option}
                             onClick={() => setSelectedAnswer(index)}
-                            className={`p-3 rounded-lg text-left transition-colors ${selectedAnswer === index
-                                ? "bg-blue-500 text-white"
-                                : "bg-gray-200 text-gray-800"
+                            className={`p-3 rounded-lg text-left transition-colors
+                                 ${selectedAnswer === index
+                                    ? "bg-blue-500 text-white"
+                                    : "bg-gray-200 text-gray-800"
                                 }`}
                         >
                             {option}
