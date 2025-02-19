@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Question } from "../data";
+import { Question } from "../types";
 
 const Quiz = () => {
     const { category } = useParams<{ category: string }>();
     const [questions, setQuestions] = useState<Question[]>([]);
     const [loading, setLoading] = useState(true);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+    const [score, setScore] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,53 +29,102 @@ const Quiz = () => {
 
                 }
 
-                await new Promise(resolve => setTimeout(resolve, 1000));
-
                 const response = await fetch(apiUrl);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-
                 const data = await response.json();
-
-                setQuestions(data.results);
+                setQuestions(data.question || []);
             } catch (error) {
                 console.error("Fetch error:", error);
+                setQuestions([]);
             } finally {
                 setLoading(false);
             }
-
         };
-
         fetchData();
     }, [category]);
 
-    return (
-        <div>
-            <h2 className="text-2xl font-bold text-blue-400">
-                {category?.toUpperCase()}
-            </h2>
-            {loading ? (<p>Loading...</p>) : questions?.length > 0 ? (
-                <div>
-                    {questions.map((question, index) => (
-                        <div key={index}>
-                            <p>{question.question}</p>
-                            <ul>
-                                {question.incorrect_answers.map((answer, ix) => (
-                                    <li key={ix}>{answer}</li>
-                                ))}
-                                <li>{question.correct_answer}</li>
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <p className="text-red-500">
-                    No questions available. Please try again later.
-                </p>
-            )}
+    const handleNextQuestion = () => {
+        if (selectedAnswer === questions[currentQuestionIndex].correctOption) {
+            setScore(score + 1);
+        }
+        setSelectedAnswer(null);
+        if (currentQuestionIndex < questions.length - 1) {
+            setCurrentQuestionIndex(prev => prev + 1);
+        } else {
+            alert(`Quiz completed! You scored ${score} out of ${questions.length}`);
+        }
+    };
+
+    if (loading) return (
+        <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+            <p>Loading questions...</p>
         </div>
     );
-}
+    
+    if (!questions?.length) {
+        return <p className="text-red-500">
+            No questions available. Please try again later.
+        </p>
+    }
+
+    const currentQuestion = questions[currentQuestionIndex];
+
+    return (
+        <div className="max-w-2xl mx-auto p-4">
+            <div className="flex justify-between mb-4">
+                <h2 className="text-2xl font-bold text-blue-600">
+                    {category?.toUpperCase()}
+                </h2>
+                <div className="text-gray-600">
+                    Question {currentQuestionIndex + 1} / {questions.length}
+                </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-md p-6">
+                <h3 className="text-xl font-semibold mb-6">
+                    {currentQuestion.question}
+                </h3>
+                <div className="grid grid-cols-1 gap-4">
+                    {currentQuestion.options.map((option, index) => (
+                        <button
+                            key={index}
+                            onClick={() => setSelectedAnswer(index)}
+                            className={`p-3 rounded-lg text-left transition-colors ${selectedAnswer === index
+                                ? "bg-blue-500 text-white"
+                                : "bg-gray-200 text-gray-800"
+                                }`}
+                        >
+                            {option}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="mt-6 flex justify-between items-center">
+                    <div className="text-gray-600">
+                        Score: {score} / {questions.length}
+                    </div>
+                    <button
+                        onClick={handleNextQuestion}
+                        disabled={selectedAnswer === null}
+                        className={`px-6 py-2 rounded-lg text-white transition-colors 
+                            ${selectedAnswer === null
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-blue-500 hover:bg-blue-600"
+                            }`}
+                    >
+                        {currentQuestionIndex === questions.length - 1
+                            ? "Finish Quiz"
+                            : "Next Question"
+                        }
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 export default Quiz;
