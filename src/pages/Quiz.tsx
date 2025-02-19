@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { Question } from "../data";
 
 const Quiz = () => {
@@ -27,6 +27,7 @@ const Quiz = () => {
         fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => {
+                console.log("API data:", data);
                 setQuestions(data.results);
                 setLoading(false);
             });
