@@ -8,6 +8,7 @@ const Quiz = () => {
     const [loading, setLoading] = useState(true);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+    const [answerSubmitted, setAnswerSubmitted] = useState(false);
     const [score, setScore] = useState(0);
     const [error, setError] = useState("");
 
@@ -55,15 +56,29 @@ const Quiz = () => {
         fetchData();
     }, [category]);
 
+    const handleOptionClick = (index: number) => {
+        if (!answerSubmitted) {
+            setSelectedAnswer(index);
+            setAnswerSubmitted(true);
+        }
+    };
+
     const handleNextQuestion = () => {
         if (selectedAnswer === questions[currentQuestionIndex]?.correctOption) {
             setScore(score + 1);
         }
         setSelectedAnswer(null);
+        setAnswerSubmitted(false);
+
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(prev => prev + 1);
         } else {
-            alert(`Quiz completed! You scored ${score} out of ${questions.length}`);
+
+            // TODO: move this to a result component
+            alert(
+                `Quiz completed! You scored ${score + (selectedAnswer === questions[currentQuestionIndex]?.correctOption ? 1 : 0)
+                } out of ${questions.length}`
+            );
         }
     };
 
@@ -106,11 +121,20 @@ const Quiz = () => {
                 {currentQuestion.options.map((option, index) => (
                     <button
                         key={option}
-                        onClick={() => setSelectedAnswer(index)}
-                        className={`p-3 rounded-lg text-left transition-all duration-500 ease-in-out hover:scale-105
-                                 ${selectedAnswer === index
-                                ? "bg-blue-500 text-white"
-                                : "bg-gray-200 text-gray-800"
+                        onClick={() => handleOptionClick(index)}
+                        disabled={answerSubmitted}
+                        className={`p-3 rounded-lg text-left transition-all duration-500 ease-in-out
+                            ${answerSubmitted
+                                ? "cursor-not-allowed"
+                                : "cursor-pointer hover:scale-105"
+                            } 
+                             ${answerSubmitted
+                                ? index === currentQuestion.correctOption
+                                    ? "bg-green-500 text-white"
+                                    : "bg-orange-500 text-white"
+                                : selectedAnswer === index
+                                    ? "bg-blue-500 text-white"
+                                    : "bg-gray-200 text-gray-800"
                             }`}
                     >
                         {option}
@@ -124,11 +148,8 @@ const Quiz = () => {
                 </div>
                 <button
                     onClick={handleNextQuestion}
-                    disabled={selectedAnswer === null}
-                    className={`px-6 py-2 rounded-lg text-white transition-colors 
-                            ${selectedAnswer === null
-                            ? "bg-gray-400 cursor-not-allowed"
-                            : "bg-blue-500 hover:bg-blue-600"
+                    disabled={!answerSubmitted}
+                    className={`px-6 py-2 rounded-lg text-white transition-colors ${!answerSubmitted ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
                         }`}
                 >
                     {currentQuestionIndex === questions.length - 1
