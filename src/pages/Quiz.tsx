@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loading from "../components/Loading";
 import NextButton from "../components/NextButton";
 import { Question } from "../types";
-import Loading from "../components/Loading";
+import Result from "./Result";
 
 const Quiz = () => {
     const { category } = useParams<{ category: string }>();
@@ -11,6 +12,7 @@ const Quiz = () => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const [answerSubmitted, setAnswerSubmitted] = useState(false);
+    const [quizCompleted, setQuizCompleted] = useState(false);
     const [score, setScore] = useState(0);
     const [error, setError] = useState("");
 
@@ -75,12 +77,7 @@ const Quiz = () => {
         if (currentQuestionIndex < questions.length - 1) {
             setCurrentQuestionIndex(prev => prev + 1);
         } else {
-
-            // TODO: move this to a result component
-            alert(
-                `Quiz completed! You scored ${score + (selectedAnswer === questions[currentQuestionIndex]?.correctOption ? 1 : 0)
-                } out of ${questions.length}`
-            );
+            setQuizCompleted(true);
         }
     };
 
@@ -100,6 +97,10 @@ const Quiz = () => {
         return <p className="text-red-500 text-center p-4">
             No questions available.
         </p>;
+    }
+
+    if (quizCompleted) {
+        return <Result score={score} total={questions.length} />;
     }
 
     const currentQuestion = questions[currentQuestionIndex];
