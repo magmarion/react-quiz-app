@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NextButton from "../components/NextButton";
 import { Question } from "../types";
+import Loading from "../components/Loading";
 
 const Quiz = () => {
     const { category } = useParams<{ category: string }>();
@@ -86,13 +87,9 @@ const Quiz = () => {
 
     if (loading) {
         return (
-            <div className="text-center p-4">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-                <p className="mt-2">Loading questions...</p>
-            </div>
+            <Loading />
         );
     }
-
 
     if (error) {
         return <p className="text-red-500 text-center p-4">{error}</p>;
@@ -113,12 +110,12 @@ const Quiz = () => {
             <div className="flex justify-between mb-4">
                 <h2
                     className={`text-2xl font-bold ${category === "react"
-                            ? "text-blue-600"
-                            : category === "math"
-                                ? "text-green-600"
-                                : category === "astronomy"
-                                    ? "text-purple-600"
-                                    : "text-gray-600" // Default color for unknown categories
+                        ? "text-blue-600"
+                        : category === "math"
+                            ? "text-green-600"
+                            : category === "astronomy"
+                                ? "text-purple-600"
+                                : "text-gray-600" // Default color for unknown categories
                         }`}
                 >
                     {category?.toUpperCase()}
