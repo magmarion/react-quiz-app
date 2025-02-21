@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+# Quiz Island 🏝️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Demo
+🌐 **[Try it out!]()**  
 
-Currently, two official plugins are available:
+Quiz Island är en interaktiv quiz-app byggd med React, Vite och Tailwind CSS. Appen erbjuder användaren möjligheten att testa sina kunskaper inom olika kategorier som React, Matte, Astronomi och Ramverk. Varje kategori består av 15 frågor, och varje fråga har fyra svarsalternativ. Appen är utformad för att vara enkel att använda samtidigt som den ger en utmanande och lärorik upplevelse.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funktioner
 
-## Expanding the ESLint configuration
+- **Quiz-kategorier**: Användaren kan välja mellan fyra kategorier: React, Matte, Astronomi och Ramverk.
+- **Fetch från API**: Frågorna hämtas från olika JSON-API:er och presenteras för användaren.
+- **Responsiv design**: Appen är responsiv och anpassar sig efter olika skärmstorlekar.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Teknologier
 
-- Configure the top-level `parserOptions` property like this:
+- **React**: Används för att bygga användargränssnittet och hantera komponenter.
+- **Vite**: Används som byggverktyg för snabb utveckling och optimerad bundling.
+- **Tailwind CSS**: Används för att styla appen med ett utility-first CSS-ramverk.
+- **API**: Används för att hämta quizfrågor från externa API:er.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Installation och körning
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   ```bash
+  npm install
+  npm run dev
+  ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+  ### G-Krav:
+- **`[✔️]`**: Projektet innehåller och använder minst 6 stycken komponenter varav minst 2 stycken är “statefulla"-komponenter.
+- **`[✔️]`**: React Router har använts för att dynamiskt uppdatera URL’en.
+- **`[✔️]`**: Git & GitHub
+- **`[✔️]`**: README-fil.
+- **`[ ]`**: Presentation.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### VG-Krav:
+- **`[ ]`**: CSS i JS: styled-components
+- **`[✔️]`**: API.
+
