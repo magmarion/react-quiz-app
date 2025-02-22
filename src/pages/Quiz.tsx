@@ -4,6 +4,8 @@ import Loading from "../components/Loading";
 import NextButton from "../components/NextButton";
 import { Question } from "../types";
 import Result from "./Result";
+import QuestionCard from "../components/QuestionCard";
+
 
 const Quiz = () => {
     const { category } = useParams<{ category: string }>();
@@ -48,7 +50,6 @@ const Quiz = () => {
 
                 setQuestions(data.questions);
                 setError("");
-
             } catch (error) {
                 console.error("Fetch error:", error);
                 setError("Failed to load questions. Please try again later.");
@@ -82,81 +83,27 @@ const Quiz = () => {
     };
 
 
-    if (loading) {
-        return (
-            <Loading />
-        );
-    }
-
-    if (error) {
-        return <p className="text-red-500 text-center p-4">{error}</p>;
-    }
-
-
-    if (!questions.length) {
-        return <p className="text-red-500 text-center p-4">
-            No questions available.
-        </p>;
-    }
-
-    if (quizCompleted) {
-        return <Result score={score} total={questions.length} />;
-    }
+    if (loading) return <Loading />;
+    if (error) return <p className="text-red-500 text-center p-4">{error}</p>;
+    if (!questions.length) return <p className="text-red-500 text-center p-4"> No questions available.</p>;
+    if (quizCompleted) return <Result score={score} total={questions.length} />;
 
     const currentQuestion = questions[currentQuestionIndex];
 
 
     return (
         <div className="max-w-2xl mx-auto p-4">
-            <div className="flex justify-between mb-4">
-                <h2
-                    className={`text-2xl font-bold ${category === "react"
-                        ? "text-blue-600"
-                        : category === "math"
-                            ? "text-green-600"
-                            : category === "astronomy"
-                                ? "text-purple-600"
-                                : "text-gray-600" // Default color for unknown categories
-                        }`}
-                >
-                    {category?.toUpperCase()}
-                </h2>
+            {/* Moved question rendering logic to `QuestionCard` for cleaner, more maintainable code.*/}
+            <QuestionCard
+                question={currentQuestion}
+                currentQuestionIndex={currentQuestionIndex}
+                totalQuestions={questions.length}
+                selectedAnswer={selectedAnswer}
+                answerSubmitted={answerSubmitted}
+                handleOptionClick={handleOptionClick}
+                category={category}
+            />
 
-                <div className="text-gray-300">
-                    Question {currentQuestionIndex + 1}/{questions.length}
-                </div>
-            </div>
-
-            <h3 className="text-xl font-semibold mb-6">
-                {currentQuestion.question}
-            </h3>
-
-            <div className="grid grid-cols-1 gap-4">
-                {currentQuestion.options.map((option, index) => (
-                    <button
-                        key={option}
-                        onClick={() => handleOptionClick(index)}
-                        disabled={answerSubmitted}
-                        className={`p-3 rounded-lg text-left transition-all duration-500 ease-in-out
-
-                            ${answerSubmitted
-                                ? "cursor-not-allowed"
-                                : "cursor-pointer hover:scale-105"
-                            } 
-                            
-                             ${answerSubmitted
-                                ? index === currentQuestion.correctOption
-                                    ? "bg-green-500 text-white"
-                                    : "bg-orange-500 text-white"
-                                : selectedAnswer === index
-                                    ? "bg-blue-500 text-white"
-                                    : "bg-gray-200 text-gray-800"
-                            }`}
-                    >
-                        {option}
-                    </button>
-                ))}
-            </div>
             <NextButton
                 onClick={handleNextQuestion}
                 isLastQuestion={currentQuestionIndex === questions.length - 1}
