@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import NextButton from "../components/NextButton";
+import QuestionCard from "../components/QuestionCard";
+import Timer from "../components/Timer";
 import { Question } from "../types";
 import Result from "./Result";
-import QuestionCard from "../components/QuestionCard";
 
 
 const Quiz = () => {
@@ -17,6 +18,7 @@ const Quiz = () => {
     const [quizCompleted, setQuizCompleted] = useState(false);
     const [score, setScore] = useState(0);
     const [error, setError] = useState("");
+    const [timeUp, setTimeUp] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -82,6 +84,11 @@ const Quiz = () => {
         }
     };
 
+    const handleTimeUp = () => {
+        setTimeUp(true);
+        handleNextQuestion();
+    };
+
 
     if (loading) return <Loading />;
     if (error) return <p className="text-red-500 text-center p-4">{error}</p>;
@@ -102,7 +109,10 @@ const Quiz = () => {
                 answerSubmitted={answerSubmitted}
                 handleOptionClick={handleOptionClick}
                 category={category}
+                timeUp={timeUp}
             />
+
+            <Timer initialTime={75} onTimeUp={(handleTimeUp)} />
 
             <NextButton
                 onClick={handleNextQuestion}

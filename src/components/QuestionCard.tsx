@@ -9,6 +9,8 @@ interface QuestionCardProps {
     answerSubmitted: boolean;
     handleOptionClick: (index: number) => void;
     category?: string;
+    timeUp: boolean;
+
 }
 
 const QuestionCard: FC<QuestionCardProps> = ({
@@ -19,6 +21,7 @@ const QuestionCard: FC<QuestionCardProps> = ({
     answerSubmitted,
     handleOptionClick,
     category,
+    timeUp
 }) => (
     <div>
         <div className="flex justify-between mb-4">
@@ -44,9 +47,9 @@ const QuestionCard: FC<QuestionCardProps> = ({
                 <button
                     key={option}
                     onClick={() => handleOptionClick(index)}
-                    disabled={answerSubmitted}
+                    disabled={answerSubmitted || timeUp}
                     className={`p-3 rounded-lg text-left transition-all duration-500 ease-in-out
-                     ${answerSubmitted ? "cursor-not-allowed" : "cursor-pointer hover:scale-105"}
+                     ${answerSubmitted || timeUp ? "cursor-not-allowed" : "cursor-pointer hover:scale-105"}
                      ${answerSubmitted
                             ? index === question.correctOption
                                 ? "bg-green-500 text-white"
