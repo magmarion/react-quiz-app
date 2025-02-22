@@ -86,7 +86,7 @@ const Quiz = () => {
 
     const handleTimeUp = () => {
         setTimeUp(true);
-        handleNextQuestion();
+        setQuizCompleted(true);
     };
 
 
@@ -112,7 +112,7 @@ const Quiz = () => {
                 timeUp={timeUp}
             />
 
-            <Timer initialTime={75} onTimeUp={(handleTimeUp)} />
+            <Timer initialTime={300} onTimeUp={(handleTimeUp)} />
 
             <NextButton
                 onClick={handleNextQuestion}

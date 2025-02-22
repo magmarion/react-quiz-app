@@ -1,15 +1,15 @@
 import { FC, useEffect, useState } from "react";
 
 interface TimeProps {
-    intialTime: number;
+    initialTime: number;
     onTimeUp: () => void;
 }
 
-const Timer: FC<TimeProps> = ({ intialTime, onTimeUp }) => {
-    const [timeLeft, setTimeLeft] = useState(30);
+const Timer: FC<TimeProps> = ({ initialTime, onTimeUp }) => {
+    const [timeLeft, setTimeLeft] = useState(initialTime);
 
     useEffect(() => {
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
             onTimeUp();
             return;
         }
@@ -21,6 +21,21 @@ const Timer: FC<TimeProps> = ({ intialTime, onTimeUp }) => {
         return () => clearInterval(timer);
     }, [timeLeft, onTimeUp]);
 
-}
+    const formatTime = (seconds: number) => {
+        const mins = Math.floor(seconds / 60)
+            .toString()
+            .padStart(2, "0");
+        const secs = (seconds % 60).toString().padStart(2, "0");
+        return `${mins}:${secs}`;
+    };
+
+    return (
+        <div className="mt-4 flex justify-center">
+            <div className="border border-gray-500 rounded-full px-4 py-1 text-lg font-semibold text-white">
+                {formatTime(timeLeft)}
+            </div>
+        </div>
+    );
+};
 
 export default Timer;
