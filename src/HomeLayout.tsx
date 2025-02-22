@@ -1,15 +1,16 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 const HomeLayout = () => (
-    <div>
-        <header className="p-4 bg-gray-800 text-white text-center">
-            <Link to="/" className="inline-block cursor-pointer transform transition-transform duration-300 hover:scale-115 hover:font-bold">
-                <h1 className="text-2xl">Quiz Island</h1>
-            </Link>
-        </header>
-        <main className="p-6">
-            <Outlet />
+    <div className="flex flex-col min-h-screen">
+        <Header  />
+        <main className="flex-1 overflow-y-auto p-4">
+            <div className="max-w-4xl mx-auto h-full">
+                <Outlet />
+            </div>
         </main>
+        <Footer />
     </div>
 )
 
