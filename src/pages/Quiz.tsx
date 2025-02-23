@@ -113,14 +113,15 @@ const Quiz = () => {
             />
 
             {/* Score, Timer, and Next Button */}
-            <div className="mt-4 flex justify-between items-center h-12">
-                <div className="flex items-center h-full px-2">
+            <div className="mt-4 flex flex-col items-center gap-2
+                sm:flex-row sm:justify-between sm:items-center sm:h-12">
+                <div className="sm:h-full sm:flex sm:items-center px-2">
                     Score: {score} / {questions.length}
                 </div>
-                <div className="flex items-center h-full px-2">
+                <div className="sm:h-full sm:flex sm:items-center px-2">
                     <Timer initialTime={300} onTimeUp={handleTimeUp} />
                 </div>
-                <div className="flex items-center h-full px-2">
+                <div className="sm:h-full sm:flex sm:items-center px-2">
                     <NextButton
                         onClick={handleNextQuestion}
                         isLastQuestion={currentQuestionIndex === questions.length - 1}
