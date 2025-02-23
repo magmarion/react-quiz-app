@@ -27,12 +27,12 @@ const QuestionCard: FC<QuestionCardProps> = ({
         <div className="flex justify-between mb-4">
             <h2
                 className={`text-2xl font-bold ${category === "react"
-                    ? "text-blue-600"
+                    ? "text-[#007bff]"
                     : category === "math"
-                        ? "text-green-600"
+                        ? "text-[#2aaf64]"
                         : category === "astronomy"
-                            ? "text-purple-600"
-                            : "text-gray-600"
+                            ? "text-[#ff9900]"
+                            : "text-[#4b5563]"
                     }`}
             >
                 {category?.toUpperCase()}
