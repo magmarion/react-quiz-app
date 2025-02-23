@@ -30,10 +30,8 @@ const Timer: FC<TimeProps> = ({ initialTime, onTimeUp }) => {
     };
 
     return (
-        <div className="mt-4 flex justify-center">
-            <div className="border border-gray-500 rounded-full px-4 py-1 text-lg font-semibold text-white">
-                {formatTime(timeLeft)}
-            </div>
+        <div className="border border-gray-500 rounded-lg px-4 py-1 text-lg font-semibold text-white">
+            {formatTime(timeLeft)}
         </div>
     );
 };

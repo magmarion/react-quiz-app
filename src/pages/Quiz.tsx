@@ -100,7 +100,7 @@ const Quiz = () => {
 
     return (
         <div className="max-w-2xl mx-auto p-4">
-            {/* Moved question rendering logic to `QuestionCard` for cleaner, more maintainable code.*/}
+            {/* Question Card */}
             <QuestionCard
                 question={currentQuestion}
                 currentQuestionIndex={currentQuestionIndex}
@@ -112,17 +112,23 @@ const Quiz = () => {
                 timeUp={timeUp}
             />
 
-            <Timer initialTime={300} onTimeUp={(handleTimeUp)} />
-
-            <NextButton
-                onClick={handleNextQuestion}
-                isLastQuestion={currentQuestionIndex === questions.length - 1}
-                disabled={!answerSubmitted}
-                score={score}
-                totalQuestions={questions.length}
-            />
+            {/* Score, Timer, and Next Button */}
+            <div className="mt-4 flex justify-between items-center h-12">
+                <div className="flex items-center h-full px-2">
+                    Score: {score} / {questions.length}
+                </div>
+                <div className="flex items-center h-full px-2">
+                    <Timer initialTime={300} onTimeUp={handleTimeUp} />
+                </div>
+                <div className="flex items-center h-full px-2">
+                    <NextButton
+                        onClick={handleNextQuestion}
+                        isLastQuestion={currentQuestionIndex === questions.length - 1}
+                        disabled={!answerSubmitted}
+                    />
+                </div>
+            </div>
         </div>
-
     );
 };
 
