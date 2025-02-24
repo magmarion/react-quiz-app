@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
  */
 
 const Header = () => (
-    <header className="p-4 bg-[#181C14] text-white text-center shadow-xl">
+    <header className="happy-monkey p-4 bg-[#181C14] text-white text-center shadow-xl">
         <Link
             to="/"
             className="inline-block cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:font-bold"

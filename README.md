@@ -30,9 +30,9 @@ Quiz Island är en interaktiv quiz-app byggd med React, Vite och Tailwind CSS. A
 - **`[✔️]`**: React Router har använts för att dynamiskt uppdatera URL’en.
 - **`[✔️]`**: Git & GitHub
 - **`[✔️]`**: README-fil.
-- **`[ ]`**: Presentation.
+- **`[✔️]`**: Presentation.
 
 ### VG-Krav:
-- **`[ ]`**: CSS i JS: styled-components
+- **`[✔️]`**: CSS i JS: styled-components
 - **`[✔️]`**: API.
 

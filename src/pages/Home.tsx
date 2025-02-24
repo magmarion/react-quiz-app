@@ -1,4 +1,16 @@
 import { Link } from 'react-router-dom';
+// import clickSound2 from '../assets/clickSound2.mp3'; // Adjust path as needed
+import mouseClick from '../assets/mouse-click.mp3';
+
+const playClickSound = () => {
+    try {
+        const audio = new Audio(mouseClick);
+        audio.volume = 0.3;
+        audio.play();
+    } catch (error) {
+        console.log('Error playing audio:', error);
+    }
+};
 
 type CategoryButtonProps = {
     to: string;
@@ -49,8 +61,14 @@ const variantStyles = {
 const CategoryButton = ({ to, label, variant }: CategoryButtonProps) => {
     const { front, edge } = variantStyles[variant];
 
+    const handleClick = () => {
+        playClickSound();
+    };
+
     return (
-        <Link to={to} className="relative group inline-block outline-none focus:outline-offset-4">
+        <Link to={to} className="relative group inline-block outline-none focus:outline-offset-4"
+            onClick={handleClick}
+        >
             {/* Shadow */}
             <span
                 className="absolute top-[5px] left-0 w-full h-full rounded-[12px] bg-black/25
@@ -82,15 +100,15 @@ const CategoryButton = ({ to, label, variant }: CategoryButtonProps) => {
  */
 const Home = () => (
     <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to the Quiz App!</h1>
+        <h1 className="happy-monkey text-4xl font-bold mb-4">Welcome to the Mind Mint Quiz!</h1>
         <p className="mb-6 text-lg">Select a quiz category:</p>
         <div className="flex justify-center flex-wrap gap-4">
-            <CategoryButton to="/quiz/react" label="React" variant="primary" />
-            <CategoryButton to="/quiz/math" label="Math" variant="secondary" />
-            <CategoryButton to="/quiz/astronomy" label="Astronomy"
+            <CategoryButton to="/quiz/react" label="REACT" variant="primary" />
+            <CategoryButton to="/quiz/math" label="MATH" variant="secondary" />
+            <CategoryButton to="/quiz/astronomy" label="ASTRONOMY"
                 variant="tertiary" />
-            <CategoryButton to="/quiz/physics" label="Physics" variant="quaternary" />
-            <CategoryButton to="/quiz/error" label="No Source" variant="quinary" />
+            <CategoryButton to="/quiz/physics" label="PHYSICS" variant="quaternary" />
+            <CategoryButton to="/quiz/error" label="NO SOURCE" variant="quinary" />
         </div>
     </div>
 );
