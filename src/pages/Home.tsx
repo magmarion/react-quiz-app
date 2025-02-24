@@ -100,7 +100,7 @@ const CategoryButton = ({ to, label, variant }: CategoryButtonProps) => {
  */
 const Home = () => (
     <div className="text-center">
-        <h1 className="happy-monkey text-4xl font-bold mb-4">Welcome to the Mind Mint Quiz!</h1>
+        <h1 className="happy-monkey text-4xl font-bold mb-4">Welcome to the Mind Mint Quiz Island!</h1>
         <p className="mb-6 text-lg">Select a quiz category:</p>
         <div className="flex justify-center flex-wrap gap-4">
             <CategoryButton to="/quiz/react" label="REACT" variant="primary" />
