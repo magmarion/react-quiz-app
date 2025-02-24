@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
 
+/**
+ * The Header component renders the top section of the page, providing a link
+ * to the home page that contains the title "Quiz Island". The link has a hover
+ * effect that scales and boldens the text. Additional navigation elements can
+ * be added as needed.
+ */
+
 const Header = () => (
     <header className="p-4 bg-gray-800 text-white text-center">
         <Link

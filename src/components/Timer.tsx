@@ -5,6 +5,13 @@ interface TimeProps {
     onTimeUp: () => void;
 }
 
+/**
+ * A Timer component that displays a countdown in mm:ss format.
+ *
+ * Props:
+ * - `initialTime`: The initial time in seconds.
+ * - `onTimeUp`: A callback that is called when the timer reaches 0.
+ */
 const Timer: FC<TimeProps> = ({ initialTime, onTimeUp }) => {
     const [timeLeft, setTimeLeft] = useState(initialTime);
 
@@ -20,6 +27,14 @@ const Timer: FC<TimeProps> = ({ initialTime, onTimeUp }) => {
 
         return () => clearInterval(timer);
     }, [timeLeft, onTimeUp]);
+
+    /**
+     * Converts a time duration from seconds into a formatted string "mm:ss".
+     * Pads single digit minutes and seconds with leading zeros.
+     *
+     * @param seconds - The time duration in seconds.
+     * @returns A string representing the time in "mm:ss" format.
+     */
 
     const formatTime = (seconds: number) => {
         const mins = Math.floor(seconds / 60)

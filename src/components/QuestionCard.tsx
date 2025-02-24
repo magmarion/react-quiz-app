@@ -12,7 +12,24 @@ interface QuestionCardProps {
     timeUp: boolean;
 
 }
-
+/**
+ * The QuestionCard component renders a quiz question with its options.
+ * It displays the question and its options as a grid of buttons, and
+ * allows the user to select an answer by clicking on the corresponding
+ * button. The component also displays the category name and the question
+ * number.
+ *
+ * @prop {Question} question the question to be displayed, which includes
+ * the question text and the options.
+ * @prop {number} currentQuestionIndex the index of the current question.
+ * @prop {number} totalQuestions the total number of questions in the quiz.
+ * @prop {number | null} selectedAnswer the index of the selected answer option.
+ * @prop {boolean} answerSubmitted whether the user has submitted an answer.
+ * @prop {boolean} timeUp whether the quiz time has expired.
+ * @prop {string} category the category name.
+ * @prop {() => void} handleOptionClick a function to handle the event when a user
+ * selects an answer option.
+ */
 const QuestionCard: FC<QuestionCardProps> = ({
     question,
     currentQuestionIndex,

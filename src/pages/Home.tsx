@@ -29,7 +29,23 @@ const variantStyles = {
     },
 };
 
-
+/**
+ * A button component with a raised, rounded, and gradient background.
+ *
+ * Accepts the following props:
+ * - `to`: The path to navigate to when the button is clicked.
+ * - `label`: The text to display on the button.
+ * - `variant`: The color variant of the button. One of 'primary', 'secondary', 'tertiary', 'quaternary', or 'quinary'.
+ *
+ * The button has a gradient background that changes depending on the variant. The gradient is a light-to-dark
+ * gradient with a subtle 3D effect. The button also has a subtle shadow effect.
+ *
+ * The button is an anchor element with a rounded corner. When you hover over the button, the shadow and gradient
+ * effects are animated. When you click the button, the shadow and gradient effects are reversed.
+ *
+ * The button also has a focus ring that is visible when you focus the button. The focus ring is a thin, rounded
+ * rectangle that is the same color as the button's text color.
+ */
 const CategoryButton = ({ to, label, variant }: CategoryButtonProps) => {
     const { front, edge } = variantStyles[variant];
 
@@ -59,6 +75,11 @@ const CategoryButton = ({ to, label, variant }: CategoryButtonProps) => {
     );
 };
 
+/**
+ * The Home component is the main entry point of the Quiz App.
+ * It displays a title, a paragraph, and a set of buttons to select a quiz category.
+ * The buttons are rendered with the CategoryButton component.
+ */
 const Home = () => (
     <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">Welcome to the Quiz App!</h1>
