@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/' element={<HomeLayout />}>
           <Route index element={<Home />} />
           <Route path="quiz/:category" element={<Quiz />} />
-          <Route path="/results" element={<Result />} />
+          <Route path="/results" element={<Result score={0} total={0} />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
