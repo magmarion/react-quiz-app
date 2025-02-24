@@ -60,9 +60,9 @@ const Result = ({ score, total }: ResultProps) => {
             <div className="mt-4">
                 <Link
                     to="/"
-                    className="btn btn-primary cursor-pointer inline-block  transition-transform duration-800 ease-in-out hover:scale-110 hover:font-bold focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+                    className="btn btn-primary cursor-pointer inline-block"
                 >
-                    Restart Quiz
+                    Retake Quiz
                 </Link>
             </div>
         </div>

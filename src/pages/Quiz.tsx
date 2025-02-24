@@ -112,7 +112,6 @@ const Quiz = () => {
             setAnswerSubmitted(true);
         }
     };
-
     /**
      * Handles user request to proceed to the next question.
      * If the user has already submitted an answer, checks if the answer was correct
@@ -133,7 +132,6 @@ const Quiz = () => {
             setQuizCompleted(true);
         }
     };
-
     /**
      * Handles the event when the quiz time expires.
      * Sets the `timeUp` state to true and marks the quiz as completed.
@@ -142,7 +140,6 @@ const Quiz = () => {
         setTimeUp(true);
         setQuizCompleted(true);
     };
-
 
     if (loading) return <Loading />;
 
@@ -154,7 +151,6 @@ const Quiz = () => {
     if (quizCompleted) return <Result score={score} total={questions.length} />;
 
     const currentQuestion = questions[currentQuestionIndex];
-
 
     return (
         <div className="max-w-2xl mx-auto p-4">
