@@ -26,7 +26,7 @@ const NextButton: FC<NextButtonProps> = ({
             className={`px-6 py-2 rounded-lg text-white cursor-pointer transition-colors
                  ${disabled
                     ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-blue-500 hover:bg-blue-600"
+                    : "bg-[#155E95] hover:bg-[#074799]"
                 }`}
         >
             {isLastQuestion ? "Finish Quiz" : "Next Question"}
