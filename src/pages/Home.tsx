@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 type CategoryButtonProps = {
     to: string;
     label: string;
-    variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary';
+    variant: 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary';
 };
 
 const variantStyles = {
@@ -16,12 +16,16 @@ const variantStyles = {
         edge: 'bg-gradient-to-l from-[#103d26] via-[#1f7c4d] to-[#0e331f]', // Dark green gradient
     },
     tertiary: {
-        front: 'bg-[#b8860b]', 
-        edge: 'bg-gradient-to-l from-[#ffffff] via-[#b8860b] to-[#d8a400]',
+        front: 'bg-[#ff9900]', // Orange (HSL(30,100%,50%))
+        edge: 'bg-gradient-to-l from-[#663300] via-[#cc6600] to-[#552800]',
     },
     quaternary: {
         front: 'bg-[#3a3a5f]',
         edge: 'bg-gradient-to-l from-[#000000] via-[#2a2a4e] to-[#3a3a5f]',
+    },
+    quinary: {
+        front: 'bg-[#FF4C4C]',  // Red background for the front
+        edge: 'bg-gradient-to-l from-[#9B2226] via-[#FF4C4C] to-[#9B2226]',
     },
 };
 
@@ -65,6 +69,7 @@ const Home = () => (
             <CategoryButton to="/quiz/astronomy" label="Astronomy"
                 variant="tertiary" />
             <CategoryButton to="/quiz/physics" label="Physics" variant="quaternary" />
+            <CategoryButton to="/quiz/error" label="No Source" variant="quinary" />
         </div>
     </div>
 );
