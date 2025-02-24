@@ -15,7 +15,7 @@ const Result = ({ score, total }: ResultProps) => {
             <div className="mt-4">
                 <Link
                     to="/"
-                    className="btn btn-primary cursor-pointer inline-block transform transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-110 hover:font-bold focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
+                    className="btn btn-primary cursor-pointer inline-block  transition-transform duration-800 ease-in-out hover:scale-110 hover:font-bold focus:ring-2 focus:ring-offset-2 focus:ring-blue-400"
                 >
                     Restart Quiz
                 </Link>
