@@ -159,7 +159,6 @@ const Quiz = () => {
                 question={currentQuestion}
                 currentQuestionIndex={currentQuestionIndex}
                 totalQuestions={questions.length}
-                selectedAnswer={selectedAnswer}
                 answerSubmitted={answerSubmitted}
                 handleOptionClick={handleOptionClick}
                 category={category}
