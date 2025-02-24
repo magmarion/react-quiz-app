@@ -5,7 +5,6 @@ interface QuestionCardProps {
     question: Question;
     currentQuestionIndex: number;
     totalQuestions: number;
-    selectedAnswer: number | null;
     answerSubmitted: boolean;
     handleOptionClick: (index: number) => void;
     category?: string;
@@ -34,7 +33,6 @@ const QuestionCard: FC<QuestionCardProps> = ({
     question,
     currentQuestionIndex,
     totalQuestions,
-    selectedAnswer,
     answerSubmitted,
     handleOptionClick,
     category,
@@ -68,14 +66,12 @@ const QuestionCard: FC<QuestionCardProps> = ({
                     onClick={() => handleOptionClick(index)}
                     disabled={answerSubmitted || timeUp}
                     className={`p-3 rounded-lg text-left transition-all duration-500 ease-in-out
-                     ${answerSubmitted || timeUp ? "cursor-not-allowed" : "cursor-pointer hover:scale-105"}
+                     ${answerSubmitted || timeUp ? "cursor-not-allowed" : "cursor-pointer hover:bg-[#3674B5] hover:text-white hover:scale-105"}
                      ${answerSubmitted
                             ? index === question.correctOption
-                                ? "bg-green-500 text-white"
-                                : "bg-orange-500 text-white"
-                            : selectedAnswer == index
-                                ? "bg-blue-500 text-white"
-                                : "bg-gray-200 text-gray-600"
+                                ? "bg-[#355F2E] text-white"
+                                : "bg-[#E16A54] text-white"
+                            : "bg-gray-200 text-gray-600"
                         }`}
                 >
                     {option}
