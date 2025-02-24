@@ -31,7 +31,7 @@ const QuestionCard: FC<QuestionCardProps> = ({
                     : category === "math"
                         ? "text-[#2aaf64]"
                         : category === "astronomy"
-                            ? "text-[#b8860b]"
+                            ? "text-[#ff9900]"
                             : category === "physics"
                                 ? "text-[#7886C7]"
                                 : "text-[#4b5563]"
