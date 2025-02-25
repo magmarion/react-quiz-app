@@ -3,6 +3,13 @@ import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import mouseClick from '../assets/mouse-click.mp3';
 
+/**
+ * Play a mouse click sound.
+ *
+ * Tries to play the sound using the `Audio` API. If the sound is not playable
+ * (e.g. because the browser does not support the `Audio` API), it logs an
+ * error to the console.
+ */
 const playClickSound = () => {
     try {
         const audio = new Audio(mouseClick);
@@ -41,6 +48,17 @@ const variantStyles = {
         edge: css({ background: 'linear-gradient(to left, #9B2226, #FF4C4C, #9B2226)' }),
     },
 };
+
+/**
+ * A button component that navigates to a specified route and plays a click sound on interaction.
+ * 
+ * The button has a 3D effect with shadow, edge, and front layers for a visually appealing look.
+ * It changes position on hover and active states, providing a dynamic user experience.
+ * 
+ * @param {string} to - The URL path to navigate to when the button is clicked.
+ * @param {string} label - The text label displayed on the button.
+ * @param {'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary'} variant - The style variant of the button, determining its color scheme.
+ */
 
 const CategoryButton = ({ to, label, variant }: CategoryButtonProps) => {
     const { front, edge } = variantStyles[variant];
@@ -125,6 +143,17 @@ const CategoryButton = ({ to, label, variant }: CategoryButtonProps) => {
         </Link>
     );
 };
+
+/**
+ * The Home component renders the main landing page of the Mind Mint Quiz Island application.
+ *
+ * It displays a welcome message and a selection of quiz category buttons for the user to choose from.
+ * Each button navigates to a specific quiz category when clicked, allowing the user to start a quiz
+ * in that category. The buttons have a 3D effect for visual appeal and are styled with different
+ * color schemes based on their variant.
+ *
+ * @returns {JSX.Element} The Home component containing a header and category buttons.
+ */
 
 const Home = () => (
     <div css={css`

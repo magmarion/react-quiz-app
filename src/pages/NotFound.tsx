@@ -3,6 +3,16 @@ import { css } from '@emotion/react';
 import { Link } from 'react-router-dom';
 import { TbFaceIdError } from 'react-icons/tb';
 
+/**
+ * A functional component that renders a 404 error page.
+ * 
+ * This component displays an error icon and message indicating
+ * that the requested page could not be found. It provides a link
+ * for users to navigate back to the home page.
+ * 
+ * @returns {JSX.Element} The JSX code to render the 404 error page.
+ */
+
 function NotFound() {
     return (
         <div css={containerStyle}>

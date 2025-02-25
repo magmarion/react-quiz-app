@@ -4,6 +4,19 @@ import { Outlet } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 
+/**
+ * A layout component that renders the main structure of the Home page.
+ *
+ * It includes the Header, main content, and Footer components.
+ *
+ * The main content is rendered by the Outlet component, which is
+ * provided by the react-router-dom library.
+ *
+ * The component also includes a background blur effect that is
+ * provided by the blurEffectStyle and gradientStyle CSS classes.
+ *
+ * @returns {JSX.Element} The JSX code to render the Home page layout.
+ */
 const HomeLayout = () => (
     <div css={layoutStyle}>
         <Header />
@@ -67,7 +80,7 @@ const gradientStyle = css`
     aspect-ratio: 1155 / 678;
     width: 36.125rem;
     margin: 0 auto;
-    background: linear-gradient(to top right, #2aaf64, #181c14);
+    background: linear-gradient(to top right, #2aaf64, #00bcd4);
     opacity: 0.3;
     @media (min-width: 640px) {
         width: 72.1875rem;

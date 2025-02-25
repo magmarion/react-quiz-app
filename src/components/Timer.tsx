@@ -7,6 +7,15 @@ interface TimeProps {
     onTimeUp: () => void;
 }
 
+/**
+ * A component that displays a timer that counts down from the given initial time.
+ * When the time is up, the given onTimeUp function is called.
+ *
+ * The timer is updated every second.
+ *
+ * @param {number} initialTime - The initial time in seconds.
+ * @param {() => void} onTimeUp - The function to call when the time is up.
+ */
 const Timer: FC<TimeProps> = ({ initialTime, onTimeUp }) => {
     const [timeLeft, setTimeLeft] = useState(initialTime);
 

@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 import logo from '../assets/logo.webp';
 
+/**
+ * A header component that displays the logo and name of the application.
+ *
+ * It is a stateless functional component.
+ *
+ * @returns {JSX.Element} The header element.
+ */
 const Header = () => (
     <div className="flex flex-col">
         <header className="happy-monkey text-white p-4 bg-[#181C14] shadow-xl">

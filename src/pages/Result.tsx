@@ -6,9 +6,22 @@ type ResultProps = {
     score: number;
     total: number;
 };
-
+    /**
+     * A component that displays a result of a quiz.
+     * 
+     * @param {{ score: number; total: number }} props - The score and total number of questions.
+     * 
+     * @returns A JSX element that displays the result with a message and a button to retake the quiz.
+     */
 const Result = ({ score, total }: ResultProps) => {
     const getResultMessage = (score: number, total: number) => {
+    /**
+     * Gets a result message and emoji based on the score and total number of questions.
+     * 
+     * @param {number} score - The number of correct answers.
+     * @param {number} total - The total number of questions.
+     * @returns {Object} An object containing the result message and emoji.
+     */
         const percentage = (score / total) * 100;
 
         if (percentage < 33) {

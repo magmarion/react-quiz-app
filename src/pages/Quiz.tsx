@@ -71,6 +71,13 @@ const Quiz = () => {
         fetchData();
     }, [category]);
 
+    /**
+     * Handles an option click event.
+     * @param {number} index The index of the selected option.
+     * @description
+     * If the answer has not been submitted, set the selected answer to the given index and mark the answer as submitted.
+     * If the answer has already been submitted, do nothing.
+     */
     const handleOptionClick = (index: number) => {
         if (!answerSubmitted) {
             setSelectedAnswer(index);
@@ -92,6 +99,12 @@ const Quiz = () => {
         }
     };
 
+    /**
+     * Handles the timer reaching 0.
+     * @description
+     * Sets `timeUp` to `true` and marks the quiz as completed.
+     * This is called when the timer reaches 0.
+     */
     const handleTimeUp = () => {
         setTimeUp(true);
         setQuizCompleted(true);
