@@ -1,33 +1,69 @@
-import { Link } from "react-router";
-import { TbFaceIdError } from "react-icons/tb";
-
-/**
- * The NotFound component renders a user-friendly message indicating that the requested page
- * cannot be found. It includes an icon, a message stating "Page not found", and a link to
- * navigate back to the home page. This component is typically used as a fallback route for
- * non-existent paths in a React application using React Router.
- */
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { Link } from 'react-router-dom';
+import { TbFaceIdError } from 'react-icons/tb';
 
 function NotFound() {
-
     return (
-        <div className="h-full flex flex-col justify-center items-start gap-2 max-w-2xl mx-auto p-4">
-            <div className="flex items-center gap-2 text-2xl font-bold text-slate-400">
-                <TbFaceIdError size={40} />
+        <div css={containerStyle}>
+            <div css={errorMessageStyle}>
+                <TbFaceIdError css={iconStyle} />
                 <span>Page not found</span>
             </div>
 
-            <h1 className="text-2xl font-bold text-slate-400 mt-2">
-                This site can't be reached.
-            </h1>
+            <h1 css={headingStyle}>This site can't be reached.</h1>
 
-            <Link
-                to="/"
-                className="mt-4 btn btn-secondary">
-                Go Back
-            </Link>
-        </div >
-    )
+            <Link to="/" css={linkStyle}> Go Back </Link>
+        </div>
+    );
 }
 
 export default NotFound;
+
+// Emotion Styles
+const containerStyle = css`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 1rem;
+`;
+
+const errorMessageStyle = css`
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #94a3b8;
+`;
+
+const iconStyle = css`
+    font-size: 2.5rem;
+`;
+
+const headingStyle = css`
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-top: 0.5rem;
+`;
+
+const linkStyle = css`
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #858c94;
+    color: white;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+        background-color: #6c747c;
+    }
+`;
