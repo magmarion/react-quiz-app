@@ -53,7 +53,7 @@ const Quiz = () => {
          */
         const fetchData = async () => {
             try {
-                await new Promise((resolve) => setTimeout(resolve, 2000));
+                await new Promise((resolve) => setTimeout(resolve, 1000));
                 let apiUrl = "";
                 switch (category) {
                     case "react":
