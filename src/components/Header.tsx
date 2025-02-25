@@ -1,13 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from '../assets/logo.webp';
 
-/**
- * The Header component renders the top section of the page, providing a link
- * to the home page that contains the title "Quiz Island". The link has a hover
- * effect that scales and boldens the text. Additional navigation elements can
- * be added as needed.
- */
-
 const Header = () => (
     <div className="flex flex-col">
         <header className="happy-monkey text-white p-4 bg-[#181C14] shadow-xl">

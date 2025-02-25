@@ -1,10 +1,42 @@
+/** @jsxImportSource @emotion/react */
+import { css, keyframes } from '@emotion/react';
+
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
 const Loading = () => {
     return (
-        <div className="text-center p-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
-            <p className="mt-2">Loading questions...</p>
+        <div css={containerStyle}>
+            <div css={spinnerStyle} />
+            <p css={textStyle}>Loading questions...</p>
         </div>
     );
 };
 
-export default Loading
+export default Loading;
+
+// Emotion Styles
+const containerStyle = css`
+    text-align: center;
+    padding: 1rem;
+`;
+
+const spinnerStyle = css`
+    animation: ${spin} 1s linear infinite;
+    border-radius: 50%;
+    height: 3rem;
+    width: 3rem;
+    border: 2px solid transparent;
+    border-bottom-color: #3b82f6; /* blue-500 */
+    margin: 0 auto;
+`;
+
+const textStyle = css`
+    margin-top: 0.5rem;
+`;

@@ -1,17 +1,12 @@
-import { FC, useEffect, useState } from "react";
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+import { FC, useEffect, useState } from 'react';
 
 interface TimeProps {
     initialTime: number;
     onTimeUp: () => void;
 }
 
-/**
- * A Timer component that displays a countdown in mm:ss format.
- *
- * Props:
- * - `initialTime`: The initial time in seconds.
- * - `onTimeUp`: A callback that is called when the timer reaches 0.
- */
 const Timer: FC<TimeProps> = ({ initialTime, onTimeUp }) => {
     const [timeLeft, setTimeLeft] = useState(initialTime);
 
@@ -28,27 +23,29 @@ const Timer: FC<TimeProps> = ({ initialTime, onTimeUp }) => {
         return () => clearInterval(timer);
     }, [timeLeft, onTimeUp]);
 
-    /**
-     * Converts a time duration from seconds into a formatted string "mm:ss".
-     * Pads single digit minutes and seconds with leading zeros.
-     *
-     * @param seconds - The time duration in seconds.
-     * @returns A string representing the time in "mm:ss" format.
-     */
-
     const formatTime = (seconds: number) => {
         const mins = Math.floor(seconds / 60)
             .toString()
-            .padStart(2, "0");
-        const secs = (seconds % 60).toString().padStart(2, "0");
+            .padStart(2, '0');
+        const secs = (seconds % 60).toString().padStart(2, '0');
         return `${mins}:${secs}`;
     };
 
     return (
-        <div className="border border-gray-500 rounded-lg px-4 py-1 text-lg font-semibold text-white">
+        <div css={timerStyle}>
             {formatTime(timeLeft)}
         </div>
     );
 };
 
 export default Timer;
+
+// Emotion Styles
+const timerStyle = css`
+    border: 1px solid #6b7280; /* border border-gray-500 */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 0.25rem 1rem; /* px-4 py-1 */
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: white; /* text-white */
+`;

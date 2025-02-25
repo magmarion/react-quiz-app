@@ -1,16 +1,24 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
+
 /**
- * A simple footer component with a copyright notice.
+ * A footer component that displays a copyright notice.
  *
- * It is meant to be a static footer that is always visible at the bottom of the page.
- * It contains a copyright notice with the current year and the name of the author.
+ * It is a stateless functional component.
  *
- * The footer has a dark gray background and white text. It is horizontally centered.
+ * @returns {JSX.Element} The footer element.
  */
 const Footer = () => (
-  <footer className="p-4 bg-[#181C14] text-white text-center">
+  <footer css={footerStyle}>
     <p>&copy; 2025 Mind Mint Quiz made by Elnur Guliyev. All rights reserved.</p>
-    {/* Ytterligare länkar eller info kan läggas till här */}
   </footer>
-
 );
+
 export default Footer;
+
+const footerStyle = css`
+  padding: 1rem;
+  background-color: #181c14;
+  color: white;
+  text-align: center;
+`;
