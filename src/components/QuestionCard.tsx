@@ -77,7 +77,6 @@ const QuestionCard: FC<QuestionCardProps> = ({
 
 export default QuestionCard;
 
-// Emotion Styles
 const headerStyle = css`
     display: flex;
     justify-content: space-between;

@@ -30,7 +30,6 @@ const HomeLayout = () => (
 
 export default HomeLayout;
 
-// Emotion Styles
 const layoutStyle = css`
     display: flex;
     flex-direction: column;

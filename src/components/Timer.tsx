@@ -40,7 +40,6 @@ const Timer: FC<TimeProps> = ({ initialTime, onTimeUp }) => {
 
 export default Timer;
 
-// Emotion Styles
 const timerStyle = css`
     border: 1px solid #6b7280; /* border border-gray-500 */
     border-radius: 0.5rem; /* rounded-lg */

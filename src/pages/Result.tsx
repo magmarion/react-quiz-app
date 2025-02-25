@@ -52,7 +52,6 @@ const Result = ({ score, total }: ResultProps) => {
 
 export default Result;
 
-// Emotion Styles
 const containerStyle = css`
     max-width: 42rem;
     margin: 0 auto;

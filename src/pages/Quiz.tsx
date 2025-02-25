@@ -147,7 +147,6 @@ const Quiz = () => {
 
 export default Quiz;
 
-// Emotion Styles
 const containerStyle = css`
     max-width: 42rem;
     margin: 0 auto;

@@ -21,7 +21,6 @@ const Loading = () => {
 
 export default Loading;
 
-// Emotion Styles
 const containerStyle = css`
     text-align: center;
     padding: 1rem;

@@ -20,7 +20,6 @@ function NotFound() {
 
 export default NotFound;
 
-// Emotion Styles
 const containerStyle = css`
     height: 100%;
     display: flex;
