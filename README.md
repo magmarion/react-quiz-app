@@ -1,7 +1,7 @@
 # Quiz Island 🏝️
 
 ## Demo
-🌐 **[Try it out!]()**  
+🌐 **[Try it out!](https://mint-quiz-app.vercel.app/)**  
 
 Quiz Island är en interaktiv quiz-app byggd med React, Vite och Tailwind CSS. Appen erbjuder användaren möjligheten att testa sina kunskaper inom olika kategorier som React, Matte, Astronomi och Ramverk. Varje kategori består av 15 frågor, och varje fråga har fyra svarsalternativ. Appen är utformad för att vara enkel att använda samtidigt som den ger en utmanande och lärorik upplevelse.
 
@@ -33,6 +33,6 @@ Quiz Island är en interaktiv quiz-app byggd med React, Vite och Tailwind CSS. A
 - **`[✔️]`**: Presentation.
 
 ### VG-Krav:
-- **`[✔️]`**: CSS i JS: styled-components
+- **`[✔️]`**: CSS i JS: Emotion
 - **`[✔️]`**: API.
 
