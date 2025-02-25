@@ -1,4 +1,4 @@
-# Quiz Island 🏝️
+# Mind Mint 🌿
 
 ## Demo
 🌐 **[Try it out!](https://mint-quiz-app.vercel.app/)**  
