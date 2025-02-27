@@ -4,9 +4,16 @@ import logo from '../assets/logo.webp';
 import bgmusic from '../assets/bgmusic.mp3';
 import { MdMusicNote, MdMusicOff } from "react-icons/md";
 
-
-
-
+    /**
+     * A stateless functional component that renders the header of the application.
+     *
+     * The header contains the application's logo and a button to toggle background music.
+     * The component uses the `useState` hook to store the state of the background music.
+     * The `useEffect` hook is used to update the background music's state when the component
+     * is mounted or unmounted.
+     *
+     * @returns The header element.
+     */
 const Header = () => {
     const [isMusicPlaying, setIsMusicPlaying] = useState(true);
 
