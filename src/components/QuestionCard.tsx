@@ -2,6 +2,7 @@
 import { css } from '@emotion/react';
 import { FC } from 'react';
 import { Question } from '../types';
+import correctSound from '../assets/correctAnswer.mp3';
 
 interface QuestionCardProps {
     question: Question;
@@ -51,6 +52,19 @@ const QuestionCard: FC<QuestionCardProps> = ({
         }
     };
 
+    const playCorrectSound = () => {
+        const audio = new Audio(correctSound);
+        audio.volume = 0.5;
+        audio.play();
+    };
+
+    const handleOptionClickWithSound = (index: number) => {
+        handleOptionClick(index);
+        if (index === question.correctOption) {
+            playCorrectSound();
+        }
+    };
+
     return (
         <div>
             <div css={headerStyle}>
@@ -66,7 +80,7 @@ const QuestionCard: FC<QuestionCardProps> = ({
                 {question.options.map((option, index) => (
                     <button
                         key={option}
-                        onClick={() => handleOptionClick(index)}
+                        onClick={() => handleOptionClickWithSound(index)}
                         disabled={answerSubmitted || timeUp}
                         css={[
                             optionButtonStyle,
