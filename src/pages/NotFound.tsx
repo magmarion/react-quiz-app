@@ -10,7 +10,7 @@ import { TbFaceIdError } from 'react-icons/tb';
  * that the requested page could not be found. It provides a link
  * for users to navigate back to the home page.
  * 
- * @returns {JSX.Element} The JSX code to render the 404 error page.
+ * @returns The JSX code to render the 404 error page.
  */
 
 function NotFound() {

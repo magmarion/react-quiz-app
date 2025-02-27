@@ -15,7 +15,7 @@ import Header from './components/Header';
  * The component also includes a background blur effect that is
  * provided by the blurEffectStyle and gradientStyle CSS classes.
  *
- * @returns {JSX.Element} The JSX code to render the Home page layout.
+ * @returns The JSX code to render the Home page layout.
  */
 const HomeLayout = () => (
     <div css={layoutStyle}>

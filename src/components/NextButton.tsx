@@ -18,7 +18,7 @@ interface NextButtonProps {
  * that darkens the background color.
  * 
  * @param {boolean} disabled - Determines if the button is disabled.
- * @returns {SerializedStyles} The CSS styles for the button.
+ * @returns The CSS styles for the button.
  */
 
 const buttonStyle = (disabled: boolean) => css`

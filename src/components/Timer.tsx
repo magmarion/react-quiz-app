@@ -14,7 +14,7 @@ interface TimeProps {
  * The timer is updated every second.
  *
  * @param {number} initialTime - The initial time in seconds.
- * @param {() => void} onTimeUp - The function to call when the time is up.
+ * @param {() => void} props.onTimeUp - The function to call when the time is up.
  */
 const Timer: FC<TimeProps> = ({ initialTime, onTimeUp }) => {
     const [timeLeft, setTimeLeft] = useState(initialTime);

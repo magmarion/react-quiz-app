@@ -6,7 +6,7 @@ import logo from '../assets/logo.webp';
  *
  * It is a stateless functional component.
  *
- * @returns {JSX.Element} The header element.
+ * @returns The header element.
  */
 const Header = () => (
     <div className="flex flex-col">

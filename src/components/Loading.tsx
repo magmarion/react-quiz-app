@@ -14,7 +14,7 @@ const spin = keyframes`
  * A stateless functional component that renders a loading spinner
  * and a text message to indicate that questions are being loaded.
  *
- * @returns {JSX.Element} A container with a spinning animation and a loading message.
+ * @returns A container with a spinning animation and a loading message.
  */
 
 const Loading = () => {

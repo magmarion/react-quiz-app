@@ -6,7 +6,7 @@ import { css } from '@emotion/react';
  *
  * It is a stateless functional component.
  *
- * @returns {JSX.Element} The footer element.
+ * @returns The footer element.
  */
 const Footer = () => (
   <footer css={footerStyle}>

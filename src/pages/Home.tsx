@@ -57,7 +57,7 @@ const variantStyles = {
  * 
  * @param {string} to - The URL path to navigate to when the button is clicked.
  * @param {string} label - The text label displayed on the button.
- * @param {'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary'} variant - The style variant of the button, determining its color scheme.
+ * @param {'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary'}     variant - The style variant of the button, determining its color scheme.
  */
 
 const CategoryButton = ({ to, label, variant }: CategoryButtonProps) => {
