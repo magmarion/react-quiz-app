@@ -53,7 +53,7 @@ const Header = () => {
 
                 <button
                     onClick={() => setIsMusicPlaying(!isMusicPlaying)}
-                    className="p-2 bg-[#78a224] text-white rounded-lg hover:bg-[#60821d] transition-colors duration-200 flex items-center justify-center"
+                    className="p-2 bg-[#78a224] text-white rounded-lg hover:bg-[#60821d] transition-colors duration-200 flex items-center justify-center cursor-pointer"
                     title={isMusicPlaying ? "Stop Music" : "Play Music"} // Tooltip
                 >
                     {isMusicPlaying ? (
